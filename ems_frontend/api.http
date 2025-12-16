@@ -1,0 +1,14 @@
+GET https://ems.pritamgurung.com.np/events/my_events/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY1NjEzMjg0LCJpYXQiOjE3NjU2MTI5ODUsImp0aSI6IjExNTQwN2MyNDgzOTRjMDZiNDA4ODZjNTRhNjhhNGFmIiwidXNlcl9pZCI6ImI4NmQ4NTRmLTMwMmEtNDM3Yy05MmRiLTkyYjE5ODAwNWQ2ZCJ9.YCtBpjZOwhXpgJ0kxz4SK94rod7e0v2SOIVvKpXd0cQ
+
+###
+POST http://localhost:8000/guests/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Cena",
+    "event": 2,
+    "email": "cenajohn@gmail.com",
+    "rsvp_status": "N"
+}
