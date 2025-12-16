@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: ems-backend
+    env_file: .env
+    depends_on:
+      - db
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    expose:
+      - 8000
+
+  frontend:
+    build: ./frontend
+    container_name: ems-frontend
+    env_file: .env
+    expose:
+      - 3000
+
+  db:
+    image: postgres:15
+    container_name: ems-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ems
+      POSTGRES_USER: emsuser
+      POSTGRES_PASSWORD: $$$Lamjung$$$@@@
+
+  nginx:
+    image: nginx:alpine
+    container_name: ems-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static_volume:/static
+      - media_volume:/media
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
